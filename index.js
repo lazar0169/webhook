@@ -14,6 +14,8 @@ http.createServer((req, res) => {
         const body = JSON.parse(chunk);
         const isMaster = body?.ref === 'refs/heads/master';
 
+        console.log(`isAllowed: ${isAllowed}`, `isMaster: ${isMaster}`);
+
         if (isAllowed && isMaster) {
             try {
                 exec(`cd ${SCRIPT_LOCATION} && bash deploy.sh`);
