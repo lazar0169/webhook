@@ -23,6 +23,7 @@ http.createServer((req, res) => {
         }
     });
 
+    res.writeHead(200);
     res.end();
 }).listen(PORT);
 
