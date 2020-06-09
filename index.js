@@ -20,7 +20,7 @@ http.createServer((req, res) => {
         const body = JSON.parse(chunk);
         const isApprovedBranch = body?.ref === `refs/heads/${BRANCH}`;
 
-        console.log(`isAllowed: ${isAllowed}`, `isMaster: ${isApprovedBranch}`);
+        console.log(`isAllowed: ${isAllowed}`, `isApprovedBranch: ${isApprovedBranch} (${BRANCH})`);
 
         if (isAllowed && isApprovedBranch) {
             try {
