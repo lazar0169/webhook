@@ -13,9 +13,11 @@ const BRANCH = process.env.BRANCH;
 const SCRIPT_LOCATION = '~';
 
 let isBusy = false;
+let timestamp = 0;
 
 http.createServer((req, res) => {
     req.on('data', async chunk => {
+        timestamp = new Date.now();
         try {
             const signature = `sha1=${crypto.createHmac('sha1', SECRET).update(chunk).digest('hex')}`;
             const isAllowed = req.headers['x-hub-signature'] === signature;
@@ -27,7 +29,7 @@ http.createServer((req, res) => {
             if (isAllowed && isApprovedBranch) {
                 try {
                     if (!isBusy) {
-                        console.log('Auto deploy started');
+                        console.log('Auto deploy started...');
                         isBusy = true;
                         await run(`cd ${SCRIPT_LOCATION} && bash deploy.sh`);
                     }
@@ -40,6 +42,7 @@ http.createServer((req, res) => {
         }
     });
 
+    console.log('Finished! Time (ms): ', (new Date.now()) - timestamp);
     isBusy = false;
     res.writeHead(200);
     res.end();
