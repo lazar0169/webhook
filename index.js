@@ -17,7 +17,7 @@ let timestamp = 0;
 
 http.createServer((req, res) => {
     req.on('data', async chunk => {
-        timestamp = new Date.now();
+        timestamp = Date.now();
         try {
             const signature = `sha1=${crypto.createHmac('sha1', SECRET).update(chunk).digest('hex')}`;
             const isAllowed = req.headers['x-hub-signature'] === signature;
@@ -42,7 +42,7 @@ http.createServer((req, res) => {
         }
     });
 
-    console.log('Finished! Time (ms): ', (new Date.now()) - timestamp);
+    console.log('Finished! Time (ms): ', Date.now() - timestamp);
     isBusy = false;
     res.writeHead(200);
     res.end();
