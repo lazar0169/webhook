@@ -2,9 +2,11 @@ import 'dotenv/config';
 import http from 'http';
 import crypto from 'crypto';
 import {exec} from 'child_process';
+import Time from 'time';
 
 const util = require('util');
-
+const log = (msg) => console.log(Time, msg);
+const error = (msg) => console.error(Time, msg);
 const run = util.promisify(exec);
 
 const SECRET = process.env.SECRET;
@@ -23,24 +25,24 @@ http.createServer((req, res) => {
         try {
             body = JSON.parse(chunk);
         } catch (e) {
-            console.log(JSON.stringify(e));
+            log(JSON.stringify(e));
         }
         const isApprovedBranch = body?.ref === `refs/heads/${BRANCH}`;
-        console.log(`isAllowed: ${isAllowed}`, `isApprovedBranch: ${isApprovedBranch} (exp: ${body?.ref} req: ${BRANCH})`);
+        log(`isAllowed: ${isAllowed}`, `isApprovedBranch: ${isApprovedBranch} (exp: ${body?.ref} req: ${BRANCH})`);
 
         if (isAllowed && isApprovedBranch) {
             try {
                 if (!isBusy) {
                     timestamp = Date.now();
-                    console.log('Auto deploy started...');
+                    log('Auto deploy started...');
                     isBusy = true;
                     await run(`cd ${SCRIPT_LOCATION} && bash deploy.sh`);
-                    console.log('Finished! Time (ms): ', Date.now() - timestamp);
+                    log('Finished! Time (ms): ', Date.now() - timestamp);
                     isBusy = false;
                 }
-            } catch (error) {
+            } catch (err) {
                 isBusy = false;
-                console.error(error);
+                error(err);
             }
         }
 
@@ -50,4 +52,4 @@ http.createServer((req, res) => {
     res.end();
 }).listen(PORT);
 
-console.log(`Listening for webhooks on: ${PORT}`);
+log(`Listening for webhooks on: ${PORT}`);
