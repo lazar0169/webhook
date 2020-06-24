@@ -2,11 +2,11 @@ import 'dotenv/config';
 import http from 'http';
 import crypto from 'crypto';
 import {exec} from 'child_process';
-import Time from 'time';
+import Time from './time';
 
 const util = require('util');
-const log = (msg) => console.log(Time, msg);
-const error = (msg) => console.error(Time, msg);
+const log = (msg) => console.log(Time.get(), msg);
+const error = (msg) => console.error(Time.get(), msg);
 const run = util.promisify(exec);
 
 const SECRET = process.env.SECRET;
