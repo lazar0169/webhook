@@ -1,0 +1,39 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb"],
+  "plugins": [],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+  "globals": {
+    "expect": true,
+    "jest": true,
+    "beforeAll": true,
+    "afterAll": true,
+    "fbq": true,
+    "gtag": true
+  },
+  "rules": {
+    "eqeqeq": [
+      "error",
+      "always",
+      {
+        "null": "ignore"
+      }
+    ],
+    "strict": "off",
+    "no-console": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "multiline-ternary": "off",
+    "max-len": [2, 120, 2],
+    "no-underscore-dangle": "off",
+    "import/extensions": "off"
+  }
+}

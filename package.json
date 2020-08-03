@@ -4,7 +4,10 @@
   "description": "Simple webhook for automatic deployment",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "prettier-fix": "prettier --write \"src/**/*.js\"",
+    "eslint-fix": "eslint --fix .",
+    "format": "npm run eslint-fix && npm run prettier-fix"
   },
   "repository": {
     "type": "git",
@@ -19,7 +22,14 @@
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/node": "^7.10.1",
-    "@babel/preset-env": "^7.10.2"
+    "@babel/preset-env": "^7.10.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.5",
+    "prettier": "2.0.5"
   },
   "dependencies": {
     "dotenv": "^8.2.0"
