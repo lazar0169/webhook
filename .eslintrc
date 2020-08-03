@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb"],
+  "extends": ["strongloop"],
   "plugins": [],
   "parserOptions": {
     "ecmaFeatures": {
@@ -11,14 +11,6 @@
     "browser": true,
     "mocha": true,
     "node": true
-  },
-  "globals": {
-    "expect": true,
-    "jest": true,
-    "beforeAll": true,
-    "afterAll": true,
-    "fbq": true,
-    "gtag": true
   },
   "rules": {
     "eqeqeq": [
@@ -34,6 +26,14 @@
     "multiline-ternary": "off",
     "max-len": [2, 120, 2],
     "no-underscore-dangle": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ]
   }
 }
