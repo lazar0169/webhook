@@ -6,8 +6,8 @@ import Time from './time';
 
 const util = require('util');
 
-const log = (msg) => console.log(Time.get(), msg);
-const error = (msg) => console.error(Time.get(), msg);
+const log = (...args) => console.log(Time.get(), ...args);
+const error = (...args) => console.error(Time.get(), ...args);
 const run = util.promisify(exec);
 
 const { SECRET, PORT, BRANCH } = process.env;
