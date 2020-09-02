@@ -30,10 +30,10 @@ http
       } catch (e) {
         log(JSON.stringify(e));
       }
-      const isApprovedBranch = body?.ref === `refs/heads/${BRANCH}`;
+      const isApprovedBranch = body.ref === `refs/heads/${BRANCH}`;
       log(
         `isAllowed: ${isAllowed}`,
-        `isApprovedBranch: ${isApprovedBranch} (exp: ${body?.ref} req: ${BRANCH})`,
+        `isApprovedBranch: ${isApprovedBranch} (exp: ${body.ref} req: ${BRANCH})`,
       );
 
       if (isAllowed && isApprovedBranch) {
