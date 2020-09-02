@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/lazar0169/webhook#readme",
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/node": "^7.10.1",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.6.0",
+    "eslint": "^7.8.1",
     "eslint-config-strongloop": "^2.1.0",
     "eslint-plugin-import": "^2.22.0",
     "prettier": "2.0.5"
